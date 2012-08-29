@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system">
+        <name>Joomla Podio Integration</name>
+        <author>Virgil Chiriac</author>
+        <creationDate>08/23/2012</creationDate>
+        <copyright>Copyright (C) 2012 Websites-Development.</copyright>
+        <license>GPL2</license>
+        <authorEmail>dev@websites-development.com</authorEmail>
+        <authorUrl>www.websites-development.com</authorUrl>
+        <version>1.0.0</version>
+        <description>Captures information from joomla and posts it to Podio LeadsTrack app </description>
+        <files>
+                 <filename plugin="joomPodio">joomPodio.php</filename>
+                 <filename>index.html</filename>
+        </files>
+		<config>
+			<fields name="params">
+
+				<fieldset name="basic">
+					<field name="CLIENT_ID" type="text" size="30" default="" label="Podio Client ID" description="You can find it on Podio Account Settings, on API Keys tab"></field>
+					<field name="CLIENT_SECRET" type="text" size="30" default="" label="Podio Secret ID" description="You can find it on Podio Account Settings, on API Keys tab"></field>
+				</fieldset>
+				<fieldset name="advanced">
+					<field name="type" type="list" default="POST" description="" label="Type">
+						<option value="POST">on form submitted</option>
+						<option value="LOAD">on any page load - frontend</option>
+					</field>
+					<field name="LeadTracker_ID" type="text" size="30" default="" label="LeadTracker App ID" description="You can find it on app page under wrench > Developer"></field>
+					<field name="LeadTracker_Token" type="text" size="30" default="" label="LeadTracker App Tocken" description="You can find it on app page under wrench > Developer"></field>
+					<field name="menuID" type="text" size="30" default="*" label="Menu ID" description="The ItemID of the contact page. Leave * for all pages."></field>
+					<field name="map_array" type="textarea" cols="60" rows="5" default="array(
+					'website' => , 1, 'country' => 2,  'firstname' => $_POST['m4j-1'], 'surname' => $_POST['m4j-2'], 'email' => $_POST['m4j-3']
+					);" label="Fields array (php code, no tags). key = fileld name on podio; value = joomla value" description="php code: array of fields to send to Podio App"></field>
+					<field name="extra_code" type="textarea" cols="60" rows="5" label="Extra code (php code, no tags)" default="$response = JResponse::getBody(); if (substr_count($response, 'm4j_error') > 0) {echo 'false'; return false;}"></field>
+				</fieldset>
+
+			</fields>
+	</config>
+</extension>
